@@ -85,15 +85,16 @@ open class CropViewController: UIViewController {
 
     required public init(config: Mantis.Config = Mantis.Config()) {
         self.config = config
-        
         switch config.cropViewConfig.cropShapeType {
         case .circle, .square, .heart:
             self.config.presetFixedRatioType = .alwaysUsingOnePresetFixedRatio(ratio: 1)
         default:
             break
         }
-
         super.init(nibName: nil, bundle: nil)
+        self.config.cropAction = {
+            self.crop()
+        }
     }
     
     required public init?(coder aDecoder: NSCoder) {

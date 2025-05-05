@@ -39,8 +39,8 @@ public struct Config {
     }
         
     public var cropMode: CropMode = .sync
-    
-    public var cropViewConfig = CropViewConfig()    
+    public var cropAction: (() -> Void)?
+    public var cropViewConfig = CropViewConfig()
     public var cropToolbarConfig = CropToolbarConfig()
     
     public var ratioOptions: RatioOptions = .all

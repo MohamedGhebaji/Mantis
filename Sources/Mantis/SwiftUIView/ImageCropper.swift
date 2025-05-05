@@ -40,7 +40,7 @@ import SwiftUI
 /// and `Coordinator` to manage those delegate methods.
 /// 
 public struct ImageCropperView: UIViewControllerRepresentable {
-    let config: Mantis.Config
+    var config: Mantis.Config
     
     @Binding var image: UIImage?
     @Binding var transformation: Transformation?
