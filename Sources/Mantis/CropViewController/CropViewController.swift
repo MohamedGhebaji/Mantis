@@ -33,6 +33,7 @@ open class CropViewController: UIViewController {
             }
         }
     }
+    public var cropAction: CropAction?
     
     var cropView: CropViewProtocol! {
         didSet {
@@ -83,7 +84,7 @@ open class CropViewController: UIViewController {
         print("CropViewController deinit.")
     }
 
-    required public init(config: Mantis.Config = Mantis.Config()) {
+    required public init(config: Mantis.Config = Mantis.Config(), cropAction: CropAction?) {
         self.config = config
         switch config.cropViewConfig.cropShapeType {
         case .circle, .square, .heart:
@@ -92,7 +93,8 @@ open class CropViewController: UIViewController {
             break
         }
         super.init(nibName: nil, bundle: nil)
-        self.config.cropAction = {
+        self.cropAction = cropAction
+        self.cropAction?.action = {
             self.crop()
         }
     }

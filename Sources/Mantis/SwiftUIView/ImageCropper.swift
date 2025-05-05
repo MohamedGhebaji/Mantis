@@ -41,7 +41,7 @@ import SwiftUI
 /// 
 public struct ImageCropperView: UIViewControllerRepresentable {
     var config: Mantis.Config
-    
+    var cropAction: CropAction?
     @Binding var image: UIImage?
     @Binding var transformation: Transformation?
     @Binding var cropInfo: CropInfo?
@@ -56,10 +56,12 @@ public struct ImageCropperView: UIViewControllerRepresentable {
     ///   - transformation: A binding to receive the transformation (rotation, scaling, etc.) applied to the image.
     ///   - cropInfo: A binding to receive information about the selected crop area.
     public init(config: Mantis.Config = Mantis.Config(),
+                cropAction: CropAction?,
                 image: Binding<UIImage?>,
                 transformation: Binding<Transformation?>,
                 cropInfo: Binding<CropInfo?>) {
         self.config = config
+        self.cropAction = cropAction
         self._image = image
         self._transformation = transformation
         self._cropInfo = cropInfo
@@ -107,7 +109,8 @@ public struct ImageCropperView: UIViewControllerRepresentable {
         
         let cropViewController = Mantis.cropViewController(
             image: imageToEdit,
-            config: config
+            config: config,
+            cropAction: cropAction
         )
         cropViewController.delegate = context.coordinator
         return cropViewController

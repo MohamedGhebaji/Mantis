@@ -27,9 +27,10 @@ import UIKit
 // MARK: - APIs
 public func cropViewController(image: UIImage,
                                config: Mantis.Config = Mantis.Config(),
+                               cropAction: CropAction?,
                                cropToolbar: CropToolbarProtocol = CropToolbar(frame: .zero),
                                rotationControlView: RotationControlViewProtocol? = nil) -> Mantis.CropViewController {
-    let cropViewController = CropViewController(config: config)
+    let cropViewController = CropViewController(config: config, cropAction: cropAction)
     cropViewController.cropView = buildCropView(withImage: image,
                                                 config: config.cropViewConfig,
                                                 rotationControlView: rotationControlView)
@@ -39,9 +40,10 @@ public func cropViewController(image: UIImage,
 
 public func cropViewController<T: CropViewController>(image: UIImage,
                                                       config: Mantis.Config = Mantis.Config(),
+                                                      cropAction: CropAction?,
                                                       cropToolbar: CropToolbarProtocol = CropToolbar(frame: .zero),
                                                       rotationControlView: RotationControlViewProtocol? = nil) -> T {
-    let cropViewController = T(config: config)
+    let cropViewController = T(config: config, cropAction: cropAction)
     cropViewController.cropView = buildCropView(withImage: image,
                                                 config: config.cropViewConfig,
                                                 rotationControlView: rotationControlView)
