@@ -98,4 +98,6 @@ public struct Config {
 public class CropAction {
     
     public var action: (() -> Void)?
+    
+    public init() {}
 }
