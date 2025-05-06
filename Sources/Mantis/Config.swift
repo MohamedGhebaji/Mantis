@@ -39,7 +39,6 @@ public struct Config {
     }
         
     public var cropMode: CropMode = .sync
-    public var cropAction: (() -> Void)?
     public var cropViewConfig = CropViewConfig()
     public var cropToolbarConfig = CropToolbarConfig()
     
@@ -97,7 +96,7 @@ public struct Config {
 
 public class CropAction {
     
-    public var action: (() -> Void)?
+    public var execute: (() -> Void)?
     
     public init() {}
 }

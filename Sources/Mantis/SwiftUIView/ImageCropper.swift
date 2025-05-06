@@ -74,11 +74,13 @@ public struct ImageCropperView: UIViewControllerRepresentable {
             self.parent = parent
         }
         
-        public func cropViewControllerDidCrop(_ cropViewController: Mantis.CropViewController, cropped: UIImage, transformation: Transformation, cropInfo: CropInfo) {
+        public func cropViewControllerDidCrop(_ cropViewController: Mantis.CropViewController, cropped: UIImage, transformation: Transformation, cropInfo: CropInfo, withDismiss dismiss: Bool) {
             parent.image = cropped
             parent.transformation = transformation
             parent.cropInfo = cropInfo
-            parent.presentationMode.wrappedValue.dismiss()
+            if dismiss {
+                parent.presentationMode.wrappedValue.dismiss()
+            }
         }
         
         public func cropViewControllerDidCancel(_ cropViewController: Mantis.CropViewController, original: UIImage) {

@@ -94,8 +94,8 @@ open class CropViewController: UIViewController {
         }
         super.init(nibName: nil, bundle: nil)
         self.cropAction = cropAction
-        self.cropAction?.action = {
-            self.crop()
+        self.cropAction?.execute = {
+            self.crop(withDismiss: false)
         }
     }
     
@@ -588,7 +588,7 @@ extension CropViewController: CropToolbarDelegate {
 
 // API
 extension CropViewController {
-    public func crop() {
+    public func crop(withDismiss dismiss: Bool = true) {
         switch config.cropMode {
         case .sync:
             let cropOutput = cropView.crop()
@@ -603,10 +603,13 @@ extension CropViewController {
                 return
             }
             
-            delegate?.cropViewControllerDidCrop(self,
-                                                cropped: image,
-                                                transformation: cropOutput.transformation,
-                                                cropInfo: cropOutput.cropInfo)
+            delegate?.cropViewControllerDidCrop(
+                self,
+                cropped: image,
+                transformation: cropOutput.transformation,
+                cropInfo: cropOutput.cropInfo,
+                withDismiss: dismiss
+            )
         }
     }
     

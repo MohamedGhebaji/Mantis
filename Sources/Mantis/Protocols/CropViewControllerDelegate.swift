@@ -8,10 +8,13 @@
 import UIKit
 
 public protocol CropViewControllerDelegate: AnyObject {
-    func cropViewControllerDidCrop(_ cropViewController: CropViewController,
-                                   cropped: UIImage,
-                                   transformation: Transformation,
-                                   cropInfo: CropInfo)
+    func cropViewControllerDidCrop(
+        _ cropViewController: CropViewController,
+        cropped: UIImage,
+        transformation: Transformation,
+        cropInfo: CropInfo,
+        withDismiss: Bool
+    )
     func cropViewControllerDidFailToCrop(_ cropViewController: CropViewController, original: UIImage)
     func cropViewControllerDidCancel(_ cropViewController: CropViewController, original: UIImage)
     
